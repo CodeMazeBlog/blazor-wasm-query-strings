@@ -1,0 +1,21 @@
+﻿@page "/query-string-display"
+@using Microsoft.AspNetCore.WebUtilities
+@using QueryStringExample.Extensions
+@inject NavigationManager NavManager
+
+<h3>QueryStringDisplayDemo</h3>
+<hr />
+
+<h3>First Name: @_name</h3>
+<h3>Age: @_age</h3>
+
+@code {
+	private string _name;
+	private int _age;
+
+	protected override void OnInitialized()
+	{
+		_name = NavManager.ExtractQueryStringByKey<string>("name");
+		_age = NavManager.ExtractQueryStringByKey<int>("age");
+	}
+}

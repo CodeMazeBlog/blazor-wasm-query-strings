@@ -1,0 +1,30 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavManager
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p>
+	Click <a href="query-string-display?name=John&age=26">here</a>
+	to send a query string parameter to the component.
+</p>
+
+<p>
+	Click the button to send a query string parameter with NavigationManager
+	<button type="button" class="btn btn-info" @onclick="Navigate">Here</button>
+</p>
+
+@code {
+	private void Navigate()
+	{
+		var queryParams = new Dictionary<string, string>
+		{
+			["name"] = "John",
+			["age"] = "26"
+		};
+
+		NavManager.NavigateTo(QueryHelpers.AddQueryString("query-string-display", queryParams));
+	}
+}
